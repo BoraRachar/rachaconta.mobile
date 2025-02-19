@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
     padding: verticalScale(24),
+    gap: 24,
   },
   header: {
     flexDirection: 'row',
@@ -46,5 +47,11 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
     width: '100%',
+  },
+  error: {
+    color: theme.colors.Error[500],
+    fontSize: rem(12),
+    lineHeight: verticalScale(16),
+    marginTop: verticalScale(8),
   },
 })
