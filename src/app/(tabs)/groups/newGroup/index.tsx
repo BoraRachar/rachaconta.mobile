@@ -7,12 +7,13 @@ import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
+import api from '../actions'
+
 import Photograph from '@/src/assets/images/photograph.svg'
 import Pencil from '@/src/assets/images/pencil.svg'
 
-import { styles } from './styles'
 import { theme } from '@/src/theme'
-import { axiosClient } from '@/src/utils/axios'
+import { styles } from './styles'
 
 interface Categories {
   ativo: boolean
@@ -29,7 +30,7 @@ const schema = yup.object().shape({
 export default function NewGroup() {
   const [image, setImage] = useState<string | null>(null)
   const [categoriesList, setCategoriesList] = useState<Categories[]>([])
-  const [selectedCategory, setSelectedCategory] = useState<string>('')
+  const [selectedCategory, setSelectedCategory] = useState<string>('Escolha uma opção')
   const {
     control,
     formState: { errors },
@@ -50,10 +51,9 @@ export default function NewGroup() {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const { data } = await axiosClient.post(
-        'categoria/lista-categoria?metaData.pageNumber=1&metaData.pageSize=200'
-      )
-      const categories: Categories[] = data?.data.filter((item: Categories) => item.ativo === true)
+      const data = await api.getCategoriesList()
+
+      const categories = data?.data.filter((item: Categories) => item.ativo === true)
       setCategoriesList(categories)
     }
 
@@ -117,17 +117,18 @@ export default function NewGroup() {
             onValueChange={(itemValue) => {
               setSelectedCategory(itemValue)
             }}
-            mode="dialog"
+            mode="dropdown"
             dropdownIconColor={theme.colors.primaryColor}
             style={{
               width: '100%',
-              height: 50,
+              height: 54,
               fontSize: 16,
               color: theme.colors.primaryColor,
             }}
           >
             {categoriesList && categoriesList.map((item) => (
               <Picker.Item
+                key={item.idCategoria}
                 label={item.descricao}
                 value={item.descricao}
                 fontFamily={theme.fontFamily.medium}
