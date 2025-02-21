@@ -8,6 +8,7 @@ const API_BASE_URL =
 
 export const axiosClient = axios.create({
   baseURL: API_BASE_URL,
+  headers: { Accept: 'text/plan' }
 })
 
 export const axiosPrivateClient = axios.create({
