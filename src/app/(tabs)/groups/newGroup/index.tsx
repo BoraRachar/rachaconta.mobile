@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Pressable, Text, TextInput, View } from 'react-native'
 import { Picker } from '@react-native-picker/picker'
 import * as ImagePicker from 'expo-image-picker'
@@ -7,11 +7,20 @@ import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
+import api from '../actions'
+
 import Photograph from '@/src/assets/images/photograph.svg'
 import Pencil from '@/src/assets/images/pencil.svg'
 
-import { styles } from './styles'
 import { theme } from '@/src/theme'
+import { styles } from './styles'
+
+interface Categories {
+  ativo: boolean
+  dataCadastro: string
+  descricao: string
+  idCategoria: string
+}
 
 const schema = yup.object().shape({
   name: yup.string().required('O campo deve ser preenchido'),
@@ -20,7 +29,8 @@ const schema = yup.object().shape({
 
 export default function NewGroup() {
   const [image, setImage] = useState<string | null>(null)
-  const [selectedCategory, setSelectedCategory] = useState<string>('')
+  const [categoriesList, setCategoriesList] = useState<Categories[]>([])
+  const [selectedCategory, setSelectedCategory] = useState<string>('Escolha uma opção')
   const {
     control,
     formState: { errors },
@@ -38,6 +48,17 @@ export default function NewGroup() {
       setImage(result.assets[0].uri)
     }
   }
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const data = await api.getCategoriesList()
+
+      const categories = data?.data.filter((item: Categories) => item.ativo === true)
+      setCategoriesList(categories)
+    }
+
+    fetchCategories()
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -96,33 +117,24 @@ export default function NewGroup() {
             onValueChange={(itemValue) => {
               setSelectedCategory(itemValue)
             }}
-            mode="dialog"
+            mode="dropdown"
             dropdownIconColor={theme.colors.primaryColor}
             style={{
               width: '100%',
-              height: 50,
+              height: 54,
               fontSize: 16,
               color: theme.colors.primaryColor,
             }}
           >
-            <Picker.Item
-              label="Escolha uma opção"
-              value=""
-              fontFamily={theme.fontFamily.medium}
-              color={theme.colors.primaryColor}
-            />
-            <Picker.Item
-              label="Publico"
-              value="public"
-              fontFamily={theme.fontFamily.medium}
-              color={theme.colors.primaryColor}
-            />
-            <Picker.Item
-              label="Privado"
-              value="privado"
-              fontFamily={theme.fontFamily.medium}
-              color={theme.colors.primaryColor}
-            />
+            {categoriesList && categoriesList.map((item) => (
+              <Picker.Item
+                key={item.idCategoria}
+                label={item.descricao}
+                value={item.descricao}
+                fontFamily={theme.fontFamily.medium}
+                color={theme.colors.primaryColor}
+              />
+            ))}
           </Picker>
         </View>
       </View>
