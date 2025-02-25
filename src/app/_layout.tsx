@@ -1,5 +1,6 @@
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
-import { Slot } from 'expo-router'
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "react-native";
+import { Slot } from "expo-router";
 
 import {
   useFonts,
@@ -7,7 +8,7 @@ import {
   Inter_500Medium as InterMedium,
   Inter_600SemiBold as InterSemiBold,
   Inter_700Bold as InterBold,
-} from '@expo-google-fonts/inter'
+} from "@expo-google-fonts/inter";
 
 export default function Layout() {
   const [fontsLoaded] = useFonts({
@@ -15,15 +16,18 @@ export default function Layout() {
     InterMedium,
     InterSemiBold,
     InterBold,
-  })
+  });
 
-  if (!fontsLoaded) return
+  if (!fontsLoaded) return;
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={{ flex: 1 }}>
-        <Slot />
-      </SafeAreaView>
-    </SafeAreaProvider>
-  )
+    <>
+      <StatusBar translucent backgroundColor="transparent" />
+      <SafeAreaProvider>
+        <SafeAreaView style={{ flex: 1 }}>
+          <Slot />
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </>
+  );
 }
