@@ -1,64 +1,68 @@
-import { useEffect, useState } from 'react'
-import { Pressable, Text, TextInput, View } from 'react-native'
-import { Picker } from '@react-native-picker/picker'
-import * as ImagePicker from 'expo-image-picker'
-import { Image } from 'expo-image'
-import { useForm, Controller } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
+import { useEffect, useState } from "react";
+import { Pressable, Text, TextInput, View } from "react-native";
+import { Picker } from "@react-native-picker/picker";
+import * as ImagePicker from "expo-image-picker";
+import { Image } from "expo-image";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import AddParticipantsComponent from "../components/AddParticipants";
+import * as yup from "yup";
 
-import api from '../actions'
+import api from "../actions";
 
-import Photograph from '@/src/assets/images/photograph.svg'
-import Pencil from '@/src/assets/images/pencil.svg'
+import Photograph from "@/src/assets/images/photograph.svg";
+import Pencil from "@/src/assets/images/pencil.svg";
 
-import { theme } from '@/src/theme'
-import { styles } from './styles'
+import { theme } from "@/src/theme";
+import { styles } from "./styles";
 
 interface Categories {
-  ativo: boolean
-  dataCadastro: string
-  descricao: string
-  idCategoria: string
+  ativo: boolean;
+  dataCadastro: string;
+  descricao: string;
+  idCategoria: string;
 }
 
 const schema = yup.object().shape({
-  name: yup.string().required('O campo deve ser preenchido'),
+  name: yup.string().required("O campo deve ser preenchido"),
   description: yup.string(),
-})
+});
 
 export default function NewGroup() {
-  const [image, setImage] = useState<string | null>(null)
-  const [categoriesList, setCategoriesList] = useState<Categories[]>([])
-  const [selectedCategory, setSelectedCategory] = useState<string>('Escolha uma opção')
+  const [image, setImage] = useState<string | null>(null);
+  const [categoriesList, setCategoriesList] = useState<Categories[]>([]);
+  const [selectedCategory, setSelectedCategory] =
+    useState<string>("Escolha uma opção");
   const {
     control,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) })
+  } = useForm({ resolver: yupResolver(schema) });
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images'],
+      mediaTypes: ["images"],
       allowsEditing: true,
       quality: 1,
       base64: true,
-    })
+    });
 
     if (!result.canceled) {
-      setImage(result.assets[0].uri)
+      setImage(result.assets[0].uri);
     }
-  }
+  };
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const data = await api.getCategoriesList()
+      const data = await api.getCategoriesList();
 
-      const categories = data?.data.filter((item: Categories) => item.ativo === true)
-      setCategoriesList(categories)
-    }
+      const categories = data?.data.filter(
+        (item: Categories) => item.ativo === true
+      );
+      setCategoriesList(categories);
+    };
 
-    fetchCategories()
-  }, [])
+    fetchCategories();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -68,7 +72,7 @@ export default function NewGroup() {
           {image ? (
             <Image
               source={{ uri: image }}
-              style={{ width: '100%', height: '100%' }}
+              style={{ width: "100%", height: "100%" }}
               alt="imagem do grupo"
             />
           ) : (
@@ -115,26 +119,27 @@ export default function NewGroup() {
           <Picker
             selectedValue={selectedCategory}
             onValueChange={(itemValue) => {
-              setSelectedCategory(itemValue)
+              setSelectedCategory(itemValue);
             }}
             mode="dropdown"
             dropdownIconColor={theme.colors.primaryColor}
             style={{
-              width: '100%',
+              width: "100%",
               height: 54,
               fontSize: 16,
               color: theme.colors.primaryColor,
             }}
           >
-            {categoriesList && categoriesList.map((item) => (
-              <Picker.Item
-                key={item.idCategoria}
-                label={item.descricao}
-                value={item.descricao}
-                fontFamily={theme.fontFamily.medium}
-                color={theme.colors.primaryColor}
-              />
-            ))}
+            {categoriesList &&
+              categoriesList.map((item) => (
+                <Picker.Item
+                  key={item.idCategoria}
+                  label={item.descricao}
+                  value={item.descricao}
+                  fontFamily={theme.fontFamily.medium}
+                  color={theme.colors.primaryColor}
+                />
+              ))}
           </Picker>
         </View>
       </View>
@@ -147,7 +152,7 @@ export default function NewGroup() {
           name="description"
           render={({ field: { onChange, value } }) => (
             <TextInput
-              style={[styles.input, { height: 100, textAlignVertical: 'top' }]}
+              style={[styles.input, { height: 100, textAlignVertical: "top" }]}
               placeholder="Insira uma breve descrição"
               placeholderTextColor={theme.colors.fourth}
               maxLength={100}
@@ -162,6 +167,9 @@ export default function NewGroup() {
           <Text style={styles.error}>{errors.description.message}</Text>
         )}
       </View>
+
+      {/* Adicionar Participantes */}
+      <AddParticipantsComponent />
     </View>
-  )
+  );
 }
