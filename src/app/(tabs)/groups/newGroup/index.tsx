@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import * as ImagePicker from "expo-image-picker";
 import { Image } from "expo-image";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import AddParticipantsComponent from "../components/AddParticipants";
 import * as yup from "yup";
 
 import api from "../actions";
 
+import ActionLinkButton from "@/src/components/ActionLinkButton";
+import AddParticipantsComponent from "../components/AddParticipants";
+import { ButtonCustomizer } from "@/src/components/ButtonCustomizer";
+
 import Photograph from "@/src/assets/images/photograph.svg";
 import Pencil from "@/src/assets/images/pencil.svg";
+import LinkIcon from '@/src/assets/images/linkIcon.svg'
+import AddFriendIcon from '@/src/assets/images/addFriendIcon.svg'
 
+import { styles as globalStyles } from "@/src/app/styles";
 import { theme } from "@/src/theme";
 import { styles } from "./styles";
 
@@ -65,7 +71,7 @@ export default function NewGroup() {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.imageContainer}>
@@ -169,7 +175,47 @@ export default function NewGroup() {
       </View>
 
       {/* Adicionar Participantes */}
-      <AddParticipantsComponent />
-    </View>
+      <View style={{ marginTop: 16 }}>
+        <AddParticipantsComponent />
+      </View>
+
+      <View>
+        <ActionLinkButton
+          text="Convidar com link"
+          icon={<LinkIcon />}
+          link="/friends/addNewFriendsPage"
+        />
+      </View>
+      <View>
+        <ActionLinkButton
+          text="Adicionar amigo"
+          icon={<AddFriendIcon />}
+          link="/friendsv/addNewFriendsPage"
+        />
+      </View>
+
+      {/* Botão */}
+      <View style={{ marginTop: 50, paddingBottom: 50, flexDirection: "row", gap: 16 }}>
+        <ButtonCustomizer.Root
+          type="tertiaryHalfWidth"
+          onPress={() => console.log("cancelar")}
+        >
+          <ButtonCustomizer.Title
+            title="Cancelar"
+            customStyles={globalStyles.secondaryButtonText}
+          />
+        </ButtonCustomizer.Root>
+
+        <ButtonCustomizer.Root
+          type="primaryHalfWidth"
+          onPress={() => console.log("Criar")}
+        >
+          <ButtonCustomizer.Title
+            title="Criar"
+            customStyles={globalStyles.primaryButtonText}
+          />
+        </ButtonCustomizer.Root>
+      </View>
+    </ScrollView>
   );
 }
