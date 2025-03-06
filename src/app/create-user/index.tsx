@@ -1,5 +1,5 @@
 import { View } from 'react-native'
-import { styles } from './styles'
+import styles from './styles'
 import { styles as globalStyles } from '../styles'
 import { useStepStore } from '@/src/store/StepStore'
 import { useState, useEffect } from 'react'
