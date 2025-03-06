@@ -13,7 +13,7 @@ import opeEye from '@/src/assets/images/openEye.svg'
 import closeEye from '@/src/assets/images/closeEye.svg'
 
 import { styles as globalStyles } from '@/src/app/styles'
-import { styles } from './styles'
+import styles from './styles'
 import useKeyboardStatus from '@/src/utils/keyboardUtils'
 import { ButtonCustomizer } from '@/src/components/ButtonCustomizer'
 import { useState } from 'react'
