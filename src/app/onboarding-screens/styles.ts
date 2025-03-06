@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native'
 import { theme } from '@/src/theme'
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   onboardingContainer: {
     justifyContent: 'space-between',
     height: '100%',
@@ -42,3 +42,5 @@ export const styles = StyleSheet.create({
     color: theme.colors.Gray[600],
   },
 })
+
+export default styles

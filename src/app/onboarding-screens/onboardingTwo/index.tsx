@@ -1,6 +1,6 @@
 import { Text, View, Dimensions } from 'react-native'
 import { Link, router } from 'expo-router'
-import { styles } from '../styles'
+import styles from '../styles'
 import { styles as globalStyles } from '../../styles'
 import { ButtonCustomizer } from '@/src/components/ButtonCustomizer'
 import OnboardingScreenTwoImage from '../../../assets/images/OnboardingScreenTwoImage.svg'
