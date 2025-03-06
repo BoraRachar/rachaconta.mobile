@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import { Text, View } from 'react-native'
 
-import RemoveEmailModal from '../Modais/removeEmailModal'
-import ResendEmailModal from '../Modais/ResendEmailModal'
 import AvatarImageComponent from '@/src/components/AvatarImageComponent'
 
 import { useFriendStore } from '@/src/store/useFriendStore'
@@ -11,7 +9,7 @@ import { removeEmailInvitation, resendEmailInvitations } from '../../actions'
 import Email from '@/src/assets/images/e-mail.svg'
 import Trash from '@/src/assets/images/trash.svg'
 
-import { styles } from '../../styles'
+import styles from '../../styles'
 import ModalComponent from '@/src/components/ModalComponent'
 
 type SentInvitationCardProps = {

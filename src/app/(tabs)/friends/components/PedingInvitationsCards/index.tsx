@@ -10,7 +10,7 @@ import ModalComponent from '@/src/components/ModalComponent'
 import CheckGreen from '@/src/assets/images/check-green.svg'
 import CloseRed from '@/src/assets/images/close-red.svg'
 
-import { styles } from '../../styles'
+import styles from '../../styles'
 
 type Props = {
   friend: {

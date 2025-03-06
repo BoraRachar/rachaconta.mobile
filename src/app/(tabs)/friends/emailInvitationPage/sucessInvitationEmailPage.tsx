@@ -6,7 +6,7 @@ import { ButtonCustomizer } from '@/src/components/ButtonCustomizer'
 import { horizontalScale, verticalScale } from '@/src/utils/responsiveUtils'
 
 import { styles as globalStyles } from '@/src/app/styles'
-import { styles } from '../styles'
+import styles from '../styles'
 
 export default function SucessInvitationEmailPage() {
   const { name } = useLocalSearchParams()

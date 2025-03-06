@@ -2,7 +2,7 @@ import { Text, TouchableOpacity, View } from 'react-native'
 
 import Plus from '@/src/assets/images/plus.svg'
 
-import { styles } from './styles'
+import styles from './styles'
 import { router } from 'expo-router'
 
 export default function LinkToAddNewFriendsPage() {

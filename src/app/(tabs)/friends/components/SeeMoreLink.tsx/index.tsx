@@ -1,7 +1,7 @@
 import { View } from 'react-native'
 import { Link } from 'expo-router'
 
-import { styles } from '../../styles'
+import styles from '../../styles'
 
 export default function SeeMoreLink({
   text,

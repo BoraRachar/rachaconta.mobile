@@ -16,7 +16,7 @@ import LinkToAddNewFriendsPage from './components/LinkToAddNewFriendsPage'
 import EmptyListMessage from './components/EmptyListMessage'
 import FriendItem from './components/FriendItem'
 
-import { styles } from './styles'
+import styles from './styles'
 import { verticalScale } from '@/src/utils/responsiveUtils'
 
 export default function FriendPage() {

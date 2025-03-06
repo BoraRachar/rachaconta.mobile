@@ -17,7 +17,7 @@ import { addNewFriend } from '../actions'
 import PlusCircleIcon from '@/src/assets/images/plus-circle.svg'
 import CheckIcon from '@/src/assets/images/check.svg'
 
-import { styles } from '../styles'
+import styles from '../styles'
 
 type User = {
   amigoId: string

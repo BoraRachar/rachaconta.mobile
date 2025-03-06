@@ -5,7 +5,7 @@ import AvatarImageComponent from '@/src/components/AvatarImageComponent'
 import User from '@/src/assets/images/user.svg'
 import ChevronRight from '@/src/assets/images/chevron-arrow-right.svg'
 
-import { styles } from '../../styles'
+import styles from '../../styles'
 
 type Friend = {
   amigoId: string

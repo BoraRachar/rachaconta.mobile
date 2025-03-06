@@ -14,7 +14,7 @@ import { ButtonCustomizer } from '@/src/components/ButtonCustomizer'
 import SearchIcon from '@/src/assets/images/search.svg'
 
 import { styles as globalStyles } from '@/src/app/styles'
-import { styles } from '../styles'
+import styles from '../styles'
 import { verticalScale } from '@/src/utils/responsiveUtils'
 import LinkToInviteByEmailPage from '../components/LinkToInviteByEmailPage'
 

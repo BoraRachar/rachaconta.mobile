@@ -3,7 +3,7 @@ import { verticalScale, rem } from '@/src/utils/responsiveUtils'
 
 import { theme } from '@/src/theme'
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   containerButton: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -27,3 +27,5 @@ export const styles = StyleSheet.create({
     padding: 14,
   },
 })
+
+export default styles

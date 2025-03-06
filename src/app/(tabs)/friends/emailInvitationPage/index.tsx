@@ -13,7 +13,7 @@ import ArrowRightDisable from '@/src/assets/images/arrowRightDisable.svg'
 import ArrowRight from '@/src/assets/images/arrowRight.svg'
 
 import { styles as globalStyles } from '@/src/app/styles'
-import { styles } from '../styles'
+import styles from '../styles'
 import { verticalScale } from '@/src/utils/responsiveUtils'
 import { axiosPrivateClient } from '@/src/utils/axios'
 import { useAuthStore } from '@/src/store/useAuthStore'

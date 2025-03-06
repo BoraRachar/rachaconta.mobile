@@ -4,7 +4,7 @@ import { verticalScale } from '@/src/utils/responsiveUtils'
 
 import EmailIcon from '@/src/assets/images/email.svg'
 
-import { styles } from '../../styles'
+import styles from '../../styles'
 
 export default function LinkToInviteByEmailPage({
   withTitle = false,

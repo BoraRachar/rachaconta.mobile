@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native'
 import { Link } from 'expo-router'
 
-import { styles } from '../../styles'
+import styles from '../../styles'
 
 export default function EmptyListMessage({ title }: { title: string }) {
   function LinkToAddNewFriendsPage() {
