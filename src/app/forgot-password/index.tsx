@@ -15,7 +15,7 @@ import emailValidation from '@/src/utils/emailValidation'
 import ArrowBack from '@/src/assets/images/arrowBack.svg'
 
 import { styles as globalStyles } from '@/src/app/styles'
-import { styles } from './styles'
+import styles from './styles'
 import { axiosClient } from '@/src/utils/axios'
 
 const schema = yup.object().shape({

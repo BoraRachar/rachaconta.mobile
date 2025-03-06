@@ -1,7 +1,7 @@
 import { theme } from '@/src/theme'
 import { StyleSheet } from 'react-native'
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   title: {
     fontFamily: theme.fontFamily.bold,
     fontSize: theme.sizes.fontSize24,
@@ -25,3 +25,5 @@ export const styles = StyleSheet.create({
     marginTop: 16,
   },
 })
+
+export default styles
