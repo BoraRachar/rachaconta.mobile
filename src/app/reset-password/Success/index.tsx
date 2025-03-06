@@ -6,7 +6,7 @@ import ResetPasswordSucess from '@/src/assets/images/reset-password-sucess.svg'
 import { ButtonCustomizer } from '@/src/components/ButtonCustomizer'
 
 import { styles as globalStyles } from '@/src/app/styles'
-import { styles } from './styles'
+import styles from './styles'
 
 export default function Sucess() {
   const router = useRouter()

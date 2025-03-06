@@ -19,7 +19,7 @@ import OpenEye from '@/src/assets/images/openEye.svg'
 import ArrowRight from '@/src/assets/images/arrowRight.svg'
 
 import { styles as globalStyles } from '@/src/app/styles'
-import { styles } from './styles'
+import styles from './styles'
 
 const schema = yup.object().shape({
   newPassword: yup

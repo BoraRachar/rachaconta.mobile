@@ -1,7 +1,7 @@
 import { theme } from '@/src/theme'
 import { StyleSheet } from 'react-native'
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   subTitle: {
     color: theme.colors.primaryColor,
     fontFamily: theme.fontFamily.bold,
@@ -50,3 +50,5 @@ export const styles = StyleSheet.create({
     textDecorationLine: 'underline',
   },
 })
+
+export default styles

@@ -18,7 +18,7 @@ import ArrowRightDisable from '@/src/assets/images/arrowRightDisable.svg'
 import usekeyboardStatus from '@/src/utils/keyboardUtils'
 
 import { styles as globalStyles } from '@/src/app/styles'
-import { styles } from './styles'
+import styles from './styles'
 import { theme } from '@/src/theme'
 
 type OTPInputProps = {
