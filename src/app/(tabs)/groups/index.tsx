@@ -1,5 +1,5 @@
 import { Text, TouchableOpacity, View } from 'react-native'
-import { styles } from './styles'
+import styles from './styles'
 import { router } from 'expo-router'
 
 import Plus from '@/src/assets/images/plus.svg'

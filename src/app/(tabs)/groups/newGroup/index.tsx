@@ -20,7 +20,7 @@ import AddFriendIcon from '@/src/assets/images/addFriendIcon.svg'
 
 import { styles as globalStyles } from "@/src/app/styles";
 import { theme } from "@/src/theme";
-import { styles } from "./styles";
+import styles from "./styles";
 
 interface Categories {
   ativo: boolean;

@@ -2,7 +2,7 @@ import { theme } from '@/src/theme'
 import { rem } from '@/src/utils/responsiveUtils'
 import { StyleSheet } from 'react-native'
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   label: {
     fontFamily: theme.fontFamily.regular,
     fontSize: rem(14),
@@ -22,3 +22,5 @@ export const styles = StyleSheet.create({
     padding: 12,
   }
 })
+
+export default styles

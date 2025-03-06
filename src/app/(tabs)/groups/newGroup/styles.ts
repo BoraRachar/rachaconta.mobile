@@ -6,7 +6,7 @@ import {
 } from '@/src/utils/responsiveUtils'
 import { StyleSheet } from 'react-native'
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1,
@@ -55,3 +55,5 @@ export const styles = StyleSheet.create({
     marginTop: verticalScale(8),
   },
 })
+
+export default styles

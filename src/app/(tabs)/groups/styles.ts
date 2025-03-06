@@ -7,7 +7,7 @@ import {
   verticalScale,
 } from '@/src/utils/responsiveUtils'
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -41,3 +41,5 @@ export const styles = StyleSheet.create({
     padding: 14,
   },
 })
+
+export default styles
