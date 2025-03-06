@@ -2,7 +2,7 @@ import { FlatList, Pressable, Text, View } from 'react-native'
 import { router } from 'expo-router'
 
 import { ButtonCustomizer } from '@/src/components/ButtonCustomizer'
-import { politicaPrivacidade } from './politicaPrivacidade'
+import politicaPrivacidade from './politicaPrivacidade'
 
 import UnCheckSquare from '@/src/assets/images/unCheckSquare.svg'
 import CheckSquare from '@/src/assets/images/checkSquare.svg'
@@ -11,7 +11,7 @@ import ArrowRightDisable from '@/src/assets/images/arrowRightDisable.svg'
 
 import { theme } from '@/src/theme'
 import { styles as globalStyles } from '@/src/app/styles'
-import { styles } from '../styles'
+import styles from '../styles'
 import { useState } from 'react'
 import useStore from '@/src/store/CreateUserstore'
 import { axiosClient } from '@/src/utils/axios'

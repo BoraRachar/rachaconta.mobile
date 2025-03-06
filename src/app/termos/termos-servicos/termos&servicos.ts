@@ -1,4 +1,4 @@
-export const termosServicos = [
+const termosServicos = [
   {
     id: '1',
     subtitle: 'Aceitação dos Termos:',
@@ -40,3 +40,5 @@ export const termosServicos = [
     text: 'Estes Termos de Serviço são regidos pelas leis do Brasil.',
   },
 ]
+
+export default termosServicos;

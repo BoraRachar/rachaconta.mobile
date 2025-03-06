@@ -7,7 +7,7 @@ import { ButtonCustomizer } from '@/src/components/ButtonCustomizer'
 import SuccessCreateAccount from '@/src/assets/images/successCreateAccount.svg'
 
 import { styles as globalStyles } from '@/src/app/styles'
-import { styles } from '../styles'
+import styles from '../styles'
 
 export default function Sucess() {
   return (

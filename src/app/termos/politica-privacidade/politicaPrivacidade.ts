@@ -1,4 +1,4 @@
-export const politicaPrivacidade = [
+const politicaPrivacidade = [
   {
     id: 1,
     subtitle: 'Informações que Coletamos:',
@@ -45,3 +45,5 @@ export const politicaPrivacidade = [
     text: 'Se você tiver alguma dúvida ou preocupação sobre nossa Política de Privacidade, entre em contato conosco em contato@borarachar.com',
   },
 ]
+
+export default politicaPrivacidade;

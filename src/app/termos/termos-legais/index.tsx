@@ -5,7 +5,7 @@ import { Text, View } from 'react-native'
 import ArrowRight from '@/src/assets/images/arrowRight.svg'
 
 import { styles as globalStyles } from '@/src/app/styles'
-import { styles } from '../styles'
+import styles from '../styles'
 
 export default function TermosLegais() {
   const { handleNavigationButton } = useNavigationControls()

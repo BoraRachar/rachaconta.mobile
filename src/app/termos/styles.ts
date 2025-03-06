@@ -1,7 +1,7 @@
 import { theme } from '@/src/theme'
 import { StyleSheet } from 'react-native'
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   termsContainer: {
     flex: 1,
     justifyContent: 'space-between',
@@ -26,3 +26,5 @@ export const styles = StyleSheet.create({
     color: theme.colors.Gray[700],
   },
 })
+
+export default styles

@@ -1,6 +1,6 @@
 import { FlatList, Pressable, Text, View } from 'react-native'
 import { ButtonCustomizer } from '@/src/components/ButtonCustomizer'
-import { termosServicos } from './termos&servicos'
+import termosServicos from './termos&servicos'
 
 import UnCheckSquare from '@/src/assets/images/unCheckSquare.svg'
 import CheckSquare from '@/src/assets/images/checkSquare.svg'
@@ -9,7 +9,7 @@ import ArrowRightDisable from '@/src/assets/images/arrowRightDisable.svg'
 
 import { theme } from '@/src/theme'
 import { styles as globalStyles } from '@/src/app/styles'
-import { styles } from '../styles'
+import styles from '../styles'
 import { useState } from 'react'
 import { useNavigationControls } from '@/src/utils/CreateUserButtonsNavigation'
 import useStore from '@/src/store/CreateUserstore'
