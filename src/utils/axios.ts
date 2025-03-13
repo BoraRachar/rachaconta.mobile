@@ -4,7 +4,7 @@ import { Alert } from 'react-native'
 
 const API_BASE_URL =
   process.env.EXPO_PUBLIC_API_BASE_URL ||
-  'https://borarachar.microbr.online1/v1/'
+  'https://borarachar.microbr.online/v1/'
 
 export const axiosClient = axios.create({
   baseURL: API_BASE_URL,
