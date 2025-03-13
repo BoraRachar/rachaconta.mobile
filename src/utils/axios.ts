@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { router } from 'expo-router'
 import { SecureStoreUtils } from '@/src/utils/secureStoreUtils'
+import { Alert } from 'react-native'
 
 const API_BASE_URL =
   process.env.EXPO_PUBLIC_API_BASE_URL ||
-  'https://borarachar.microerp.solutions/v1/'
+  'https://borarachar.microbr.online1/v1/'
 
 export const axiosClient = axios.create({
   baseURL: API_BASE_URL,
@@ -36,5 +36,20 @@ axiosPrivateClient.interceptors.request.use(
   (error) => {
     console.error('Erro na configuração da requisição:', error)
     Promise.reject(error)
+  },
+)
+
+//tratameto de erro da API quando não responder ou problemas de rede
+axiosClient.interceptors.response.use(
+  (response) => {
+    return response
+  },
+  (error) => {
+    if (error.code === 'ERR_NETWORK') {
+      Alert.alert('Atenção', 'Não foi possível se conectar ao servidor, Verifique sua conexão com a internet')
+
+    }
+
+    return Promise.reject(error)
   },
 )
