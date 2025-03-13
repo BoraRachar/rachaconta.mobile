@@ -1,8 +1,12 @@
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, ScrollView } from 'react-native';
+import { Link, router } from 'expo-router';
+
+import { styles as globalStyles } from '@/src/app/styles';
 import styles from './styles';
 
+import UserImage from '@/src/assets/images/user-circle.svg'
 import PencilBlack from '@/src/assets/images/pencil-black.svg'
-import { Link } from 'expo-router';
+import { ButtonCustomizer } from '@/src/components/ButtonCustomizer';
 
 const Resume: React.FC = () => {
   return (
@@ -62,6 +66,51 @@ const Resume: React.FC = () => {
         </View>
       </View>
 
+      <View>
+        <View style={styles.item}>
+          <Text style={styles.titleItem}>Participantes</Text>
+          <Link href={'/groups/newGroup'}>
+            <PencilBlack width={22} height={22} />
+          </Link>
+        </View>
+
+        <View style={{ maxHeight: 200 }}>
+          <FlatList
+            data={['Junior Alves', 'João da Silva', 'Maria da Silva', 'José da Silva', 'Junior Alves', 'João da Silva', 'Maria da Silva', 'José da Silva', 'Junior Alves', 'João da Silva', 'Maria da Silva', 'José da Silva', 'Junior Alves', 'João da Silva', 'Maria da Silva', 'José da Silva']}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item, index }) => (
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+                <Text style={styles.textItem}>{index + 1}</Text>
+                <UserImage width={32} height={32} />
+                <Text style={styles.textItem}>{item}</Text>
+              </View>)}
+          />
+        </View>
+
+      </View>
+
+      {/* Botão */}
+      <View style={{ marginTop: 50, paddingBottom: 50, flexDirection: "row", gap: 16 }}>
+        <ButtonCustomizer.Root
+          type="tertiaryHalfWidth"
+          onPress={() => console.log("cancelar")}
+        >
+          <ButtonCustomizer.Title
+            title="Cancelar"
+            customStyles={globalStyles.secondaryButtonText}
+          />
+        </ButtonCustomizer.Root>
+
+        <ButtonCustomizer.Root
+          type="primaryHalfWidth"
+          onPress={() => router.push("/groups/resume")}
+        >
+          <ButtonCustomizer.Title
+            title="Criar"
+            customStyles={globalStyles.primaryButtonText}
+          />
+        </ButtonCustomizer.Root>
+      </View>
 
     </ScrollView>
   )
