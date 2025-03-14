@@ -38,12 +38,12 @@ const styles = StyleSheet.create({
     maxWidth: horizontalScale(200),
   },
   category: {
+    alignSelf: 'flex-start',
     backgroundColor: theme.colors.third,
     borderRadius: 24,
     paddingVertical: verticalScale(8),
     paddingHorizontal: horizontalScale(16),
     marginTop: verticalScale(4),
-    maxWidth: horizontalScale(120),
   },
   participantsItem: {
     flexDirection: 'row',

@@ -31,6 +31,7 @@ const Resume: React.FC = () => {
           </View>
         </View>
 
+
         <View style={styles.item}>
           <View>
             <Text style={styles.titleItem}>Descrição</Text>
