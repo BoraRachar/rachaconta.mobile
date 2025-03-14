@@ -44,7 +44,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: horizontalScale(16),
     marginTop: verticalScale(4),
     maxWidth: horizontalScale(120),
+  },
+  participantsItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: theme.colors.third,
+    paddingVertical: verticalScale(16),
+    gap: horizontalScale(16),
   }
+
 })
 
 export default styles

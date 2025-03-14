@@ -8,9 +8,11 @@ import UserImage from '@/src/assets/images/user-circle.svg'
 import PencilBlack from '@/src/assets/images/pencil-black.svg'
 import { ButtonCustomizer } from '@/src/components/ButtonCustomizer';
 
+const DATA = ['Junior Alves', 'João da Silva', 'Maria da Silva', 'José da Silva', 'Junior Alves', 'João da Silva', 'Maria da Silva', 'José da Silva', 'Junior Alves', 'João da Silva', 'Maria da Silva', 'José da Silva', 'Junior Alves', 'João da Silva', 'Maria da Silva', 'José da Silva']
+
 const Resume: React.FC = () => {
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={styles.container} scrollEnabled={true}>
       {/* Header */}
       <Text style={styles.title}>Nova divisão</Text>
 
@@ -75,16 +77,15 @@ const Resume: React.FC = () => {
         </View>
 
         <View style={{ maxHeight: 200 }}>
-          <FlatList
-            data={['Junior Alves', 'João da Silva', 'Maria da Silva', 'José da Silva', 'Junior Alves', 'João da Silva', 'Maria da Silva', 'José da Silva', 'Junior Alves', 'João da Silva', 'Maria da Silva', 'José da Silva', 'Junior Alves', 'João da Silva', 'Maria da Silva', 'José da Silva']}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item, index }) => (
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+          <ScrollView nestedScrollEnabled={true}>
+            {DATA.map((item, index) => (
+              <View key={index} style={styles.participantsItem}>
                 <Text style={styles.textItem}>{index + 1}</Text>
                 <UserImage width={32} height={32} />
                 <Text style={styles.textItem}>{item}</Text>
-              </View>)}
-          />
+              </View>
+            ))}
+          </ScrollView>
         </View>
 
       </View>
