@@ -10,8 +10,8 @@ export const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1,
-    padding: verticalScale(24),
     gap: 24,
+    padding: horizontalScale(24),
   },
   header: {
     flexDirection: 'row',
