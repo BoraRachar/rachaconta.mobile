@@ -21,6 +21,7 @@ import AddFriendIcon from '@/src/assets/images/addFriendIcon.svg'
 import { styles as globalStyles } from "@/src/app/styles";
 import { theme } from "@/src/theme";
 import { styles } from "./styles";
+import { router } from "expo-router";
 
 interface Categories {
   ativo: boolean;
@@ -71,7 +72,7 @@ export default function NewGroup() {
   }, []);
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.imageContainer}>
@@ -174,26 +175,6 @@ export default function NewGroup() {
         )}
       </View>
 
-      {/* Adicionar Participantes */}
-      <View style={{ marginTop: 16 }}>
-        <AddParticipantsComponent />
-      </View>
-
-      <View>
-        <ActionLinkButton
-          text="Convidar com link"
-          icon={<LinkIcon />}
-          link="/friends/addNewFriendsPage"
-        />
-      </View>
-      <View>
-        <ActionLinkButton
-          text="Adicionar amigo"
-          icon={<AddFriendIcon />}
-          link="/friendsv/addNewFriendsPage"
-        />
-      </View>
-
       {/* Botão */}
       <View style={{ marginTop: 50, paddingBottom: 50, flexDirection: "row", gap: 16 }}>
         <ButtonCustomizer.Root
@@ -208,14 +189,14 @@ export default function NewGroup() {
 
         <ButtonCustomizer.Root
           type="primaryHalfWidth"
-          onPress={() => console.log("Criar")}
+          onPress={() => router.push("/groups/newGroup/addParticipants")}
         >
           <ButtonCustomizer.Title
-            title="Criar"
+            title="Proximo"
             customStyles={globalStyles.primaryButtonText}
           />
         </ButtonCustomizer.Root>
       </View>
-    </ScrollView>
+    </View>
   );
 }

@@ -39,6 +39,23 @@ export default function GroupsLayout() {
           headerRight: () => <Question />,
         }}
       />
+
+      <Stack.Screen
+        name="newGroup/addParticipants/index"
+        options={{
+          title: 'Adicionar participantes',
+          headerShown: true,
+          headerTitleAlign: 'center',
+          headerLeft: () => (
+            <LeftIcon
+              onPress={() => {
+                router.back()
+              }}
+            />
+          ),
+          headerRight: () => <Question />,
+        }}
+      />
     </Stack>
   )
 }
