@@ -54,4 +54,20 @@ export const styles = StyleSheet.create({
     lineHeight: verticalScale(16),
     marginTop: verticalScale(8),
   },
+  participantsContainer: {
+    borderWidth: 1,
+    borderColor: theme.colors.primaryColor,
+    borderRadius: 8,
+    padding: 12,
+  },
+  searchInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderWidth: 1,
+    borderColor: theme.colors.primaryColor,
+    borderRadius: 8,
+    padding: 12,
+    width: '100%',
+  }
 })

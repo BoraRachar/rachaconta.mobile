@@ -11,8 +11,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    paddingHorizontal: horizontalScale(24),
-    paddingVertical: verticalScale(24),
+    padding: verticalScale(24),
   },
   title: {
     fontFamily: theme.fontFamily.bold,
