@@ -1,7 +1,8 @@
-import { useState } from 'react'
-import { Pressable, Text, TextInput, View } from "react-native"
+import { useEffect, useState } from 'react'
+import { ActivityIndicator, FlatList, Pressable, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { router } from "expo-router"
 import Checkbox from 'expo-checkbox'
+import { axiosPrivateClient } from '@/src/utils/axios'
 
 import ActionLinkButton from "@/src/components/ActionLinkButton"
 import { ButtonCustomizer } from "@/src/components/ButtonCustomizer"
@@ -15,13 +16,68 @@ import Search from '@/src/assets/images/search.svg'
 import { styles as globalStyles } from "@/src/app/styles"
 import { styles } from "../styles"
 import { theme } from '@/src/theme'
+import { useAuthStore } from '@/src/store/useAuthStore'
+
+interface Friend {
+  amigoId: string
+  gruposEmComun: number
+  nome: string
+}
 
 export default function AddParticipants() {
-  const [isChecked, setChecked] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [friends, setFriends] = useState<Friend[]>()
+  const [search, setSearch] = useState("")
+  const [selected, setSelected] = useState<string[]>([])
+  const [filteredFriends, setFilteredFriends] = useState<Friend[] | undefined>([])
+
   const isKeyboardVisible = useKeyboardStatus()
+
+  const { userCod } = useAuthStore()
+
+  // Busca amigos na API ao carregar a tela
+  useEffect(() => {
+    const fetchFriends = async () => {
+      setIsLoading(true)
+      try {
+        const { data } = await axiosPrivateClient.get('amizade/lista-amizades', {
+          params: { userCod, 'metaData.pageNumber': 1, 'metaData.pageSize': 10 }
+        })
+
+        if (data.statusCode === 200) {
+          setFriends(data.data)
+          setFilteredFriends(data.data)
+        }
+
+      } catch (error) {
+        console.log("Erro ao Buscar Amigos", error)
+
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    fetchFriends()
+  }, [])
+
+  // Atualiza a lista filtrada conforme o usuário digita
+  const handleSearch = (text: string) => {
+    console.log(text)
+    const filtered = friends?.filter(friend => friend.nome.includes(text))
+    console.log(filtered)
+    setFilteredFriends(filtered)
+  }
+
+  // Alterna a seleção de um amigo
+  const toggleSelection = (amigoId: string) => {
+    setSelected((prev) =>
+      prev.includes(amigoId) ? prev.filter((item) => item !== amigoId) : [...prev, amigoId]
+    );
+  };
 
   return (
     <View style={styles.container}>
+      {isLoading && <ActivityIndicator size="large" color="#007AFF" />}
+
       <View style={{ flex: 1, gap: 30 }}>
         <View>
           <Text style={styles.label}>Adicionar participantes</Text>
@@ -29,40 +85,42 @@ export default function AddParticipants() {
           <View style={styles.searchInputContainer}>
             <TextInput
               placeholder="Sem amigos cadastrados"
+              onChangeText={handleSearch}
             />
-            <Pressable onPress={() => console.log('Clicked on search')}>
-              <Search width={24} height={24} />
-            </Pressable>
+            <Search width={24} height={24} />
           </View>
-          <View style={styles.participantsContainer}>
-            <View style={styles.checkboxItem}>
-              <Checkbox
-                value={isChecked}
-                onValueChange={setChecked}
-                color={isChecked ? theme.colors.primaryColor : undefined}
-                style={styles.checkbox}
+
+          {!isLoading && (
+            <View style={styles.participantsContainer}>
+              <FlatList
+                data={filteredFriends}
+                keyExtractor={(item) => item.amigoId}
+                renderItem={({ item }) => {
+
+                  const isSelected = selected.includes(item.amigoId)
+
+                  return (
+                    <TouchableOpacity
+                      style={[styles.checkboxItem, isSelected && { backgroundColor: theme.colors.third }]}
+                      onPress={() => toggleSelection(item.amigoId)}
+                    >
+                      <Checkbox
+                        value={isSelected}
+                        onValueChange={() => toggleSelection(item.amigoId)}
+                        color={isSelected ? theme.colors.primaryColor : undefined}
+                        style={styles.checkbox}
+                      />
+                      <Text
+                        style={[styles.checkboxText, isSelected && { fontFamily: theme.fontFamily.bold }]}
+                      >
+                        {item.nome}
+                      </Text>
+                    </TouchableOpacity>
+                  )
+                }}
               />
-              <Text style={styles.checkboxText}>Lázaro Ramos</Text>
             </View>
-            <View style={styles.checkboxItem}>
-              <Checkbox
-                value={isChecked}
-                onValueChange={setChecked}
-                color={isChecked ? theme.colors.primaryColor : undefined}
-                style={styles.checkbox}
-              />
-              <Text style={styles.checkboxText}>Lázaro Ramos</Text>
-            </View>
-            <View style={styles.checkboxItem}>
-              <Checkbox
-                value={isChecked}
-                onValueChange={setChecked}
-                color={isChecked ? theme.colors.primaryColor : undefined}
-                style={styles.checkbox}
-              />
-              <Text style={styles.checkboxText}>Lázaro Ramos</Text>
-            </View>
-          </View>
+          )}
         </View>
 
         <View>

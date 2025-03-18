@@ -69,6 +69,7 @@ export const styles = StyleSheet.create({
     borderColor: theme.colors.primaryColor,
     borderRadius: 8,
     padding: 12,
+    maxHeight: verticalScale(250)
   },
   checkboxItem: {
     flexDirection: 'row',
