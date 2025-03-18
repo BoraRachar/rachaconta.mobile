@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { Pressable, Text, TextInput, View } from "react-native"
 import { router } from "expo-router"
+import Checkbox from 'expo-checkbox'
 
 import ActionLinkButton from "@/src/components/ActionLinkButton"
 import { ButtonCustomizer } from "@/src/components/ButtonCustomizer"
@@ -12,8 +14,10 @@ import Search from '@/src/assets/images/search.svg'
 
 import { styles as globalStyles } from "@/src/app/styles"
 import { styles } from "../styles"
+import { theme } from '@/src/theme'
 
 export default function AddParticipants() {
+  const [isChecked, setChecked] = useState(false)
   const isKeyboardVisible = useKeyboardStatus()
 
   return (
@@ -31,12 +35,33 @@ export default function AddParticipants() {
             </Pressable>
           </View>
           <View style={styles.participantsContainer}>
-            <Text>Onde ficaram os nomes dos amigos</Text>
-            <Text>Onde ficaram os nomes dos amigos</Text>
-            <Text>Onde ficaram os nomes dos amigos</Text>
-            <Text>Onde ficaram os nomes dos amigos</Text>
-            <Text>Onde ficaram os nomes dos amigos</Text>
-            <Text>Onde ficaram os nomes dos amigos</Text>
+            <View style={styles.checkboxItem}>
+              <Checkbox
+                value={isChecked}
+                onValueChange={setChecked}
+                color={isChecked ? theme.colors.primaryColor : undefined}
+                style={styles.checkbox}
+              />
+              <Text style={styles.checkboxText}>Lázaro Ramos</Text>
+            </View>
+            <View style={styles.checkboxItem}>
+              <Checkbox
+                value={isChecked}
+                onValueChange={setChecked}
+                color={isChecked ? theme.colors.primaryColor : undefined}
+                style={styles.checkbox}
+              />
+              <Text style={styles.checkboxText}>Lázaro Ramos</Text>
+            </View>
+            <View style={styles.checkboxItem}>
+              <Checkbox
+                value={isChecked}
+                onValueChange={setChecked}
+                color={isChecked ? theme.colors.primaryColor : undefined}
+                style={styles.checkbox}
+              />
+              <Text style={styles.checkboxText}>Lázaro Ramos</Text>
+            </View>
           </View>
         </View>
 

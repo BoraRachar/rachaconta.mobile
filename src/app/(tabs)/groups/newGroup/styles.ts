@@ -54,12 +54,6 @@ export const styles = StyleSheet.create({
     lineHeight: verticalScale(16),
     marginTop: verticalScale(8),
   },
-  participantsContainer: {
-    borderWidth: 1,
-    borderColor: theme.colors.primaryColor,
-    borderRadius: 8,
-    padding: 12,
-  },
   searchInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -69,5 +63,27 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
     width: '100%',
+  },
+  participantsContainer: {
+    borderWidth: 1,
+    borderColor: theme.colors.primaryColor,
+    borderRadius: 8,
+    padding: 12,
+  },
+  checkboxItem: {
+    flexDirection: 'row',
+    gap: 10,
+    paddingVertical: 14,
+  },
+  checkbox: {
+    borderColor: theme.colors.primaryColor,
+    borderWidth: 2,
+    borderRadius: 4
+  },
+  checkboxText: {
+    fontFamily: theme.fontFamily.regular,
+    fontSize: 16,
+    color: theme.colors.primaryColor,
   }
+
 })
