@@ -27,7 +27,6 @@ interface Friend {
 export default function AddParticipants() {
   const [isLoading, setIsLoading] = useState(false)
   const [friends, setFriends] = useState<Friend[]>()
-  const [search, setSearch] = useState("")
   const [selected, setSelected] = useState<string[]>([])
   const [filteredFriends, setFilteredFriends] = useState<Friend[] | undefined>([])
 
@@ -61,16 +60,18 @@ export default function AddParticipants() {
 
   // Atualiza a lista filtrada conforme o usuário digita
   const handleSearch = (text: string) => {
-    console.log(text)
     const filtered = friends?.filter(friend => friend.nome.includes(text))
-    console.log(filtered)
     setFilteredFriends(filtered)
   }
 
   // Alterna a seleção de um amigo
   const toggleSelection = (amigoId: string) => {
-    setSelected((prev) =>
-      prev.includes(amigoId) ? prev.filter((item) => item !== amigoId) : [...prev, amigoId]
+    setSelected((prev) => {
+      console.log(prev)
+      return (
+        prev.includes(amigoId) ? prev.filter((item) => item !== amigoId) : [...prev, amigoId]
+      )
+    }
     );
   };
 
@@ -84,13 +85,14 @@ export default function AddParticipants() {
 
           <View style={styles.searchInputContainer}>
             <TextInput
-              placeholder="Sem amigos cadastrados"
+              placeholder={friends ? "Procurar amigos..." : "Sem amigos cadastrados"}
               onChangeText={handleSearch}
+              style={{ flex: 1 }}
             />
             <Search width={24} height={24} />
           </View>
 
-          {!isLoading && (
+          {!isLoading && (filteredFriends?.length ?? 0) > 0 && (
             <View style={styles.participantsContainer}>
               <FlatList
                 data={filteredFriends}

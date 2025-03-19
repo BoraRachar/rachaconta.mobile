@@ -61,20 +61,20 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: theme.colors.primaryColor,
     borderRadius: 8,
-    padding: 12,
+    paddingHorizontal: 12,
     width: '100%',
+    height: verticalScale(58),
   },
   participantsContainer: {
     borderWidth: 1,
     borderColor: theme.colors.primaryColor,
     borderRadius: 8,
-    padding: 12,
     maxHeight: verticalScale(250)
   },
   checkboxItem: {
     flexDirection: 'row',
     gap: 10,
-    paddingVertical: 14,
+    padding: 12,
   },
   checkbox: {
     borderColor: theme.colors.primaryColor,
