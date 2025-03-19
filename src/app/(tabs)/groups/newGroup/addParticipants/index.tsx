@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react'
-import { ActivityIndicator, FlatList, Pressable, Text, TextInput, TouchableOpacity, View } from "react-native"
-import { router } from "expo-router"
+import { useCallback, useEffect, useState } from 'react'
+import { FlatList, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { router, useFocusEffect } from "expo-router"
 import Checkbox from 'expo-checkbox'
 import { axiosPrivateClient } from '@/src/utils/axios'
 
+import ActivityIndicatorComponent from '@/src/components/ActivityIndicatorComponent'
 import ActionLinkButton from "@/src/components/ActionLinkButton"
 import { ButtonCustomizer } from "@/src/components/ButtonCustomizer"
 
 import useKeyboardStatus from "@/src/utils/keyboardUtils"
+import { useAuthStore } from '@/src/store/useAuthStore'
 
 import LinkIcon from '@/src/assets/images/linkIcon.svg'
 import AddFriendIcon from '@/src/assets/images/addFriendIcon.svg'
@@ -16,7 +18,6 @@ import Search from '@/src/assets/images/search.svg'
 import { styles as globalStyles } from "@/src/app/styles"
 import { styles } from "../styles"
 import { theme } from '@/src/theme'
-import { useAuthStore } from '@/src/store/useAuthStore'
 
 interface Friend {
   amigoId: string
@@ -35,28 +36,30 @@ export default function AddParticipants() {
   const { userCod } = useAuthStore()
 
   // Busca amigos na API ao carregar a tela
-  useEffect(() => {
-    const fetchFriends = async () => {
-      setIsLoading(true)
-      try {
-        const { data } = await axiosPrivateClient.get('amizade/lista-amizades', {
-          params: { userCod, 'metaData.pageNumber': 1, 'metaData.pageSize': 10 }
-        })
+  useFocusEffect(
+    useCallback(() => {
+      const fetchFriends = async () => {
+        setIsLoading(true)
+        try {
+          const { data } = await axiosPrivateClient.get('amizade/lista-amizades', {
+            params: { userCod, 'metaData.pageNumber': 1, 'metaData.pageSize': 10 }
+          })
 
-        if (data.statusCode === 200) {
-          setFriends(data.data)
-          setFilteredFriends(data.data)
+          if (data.statusCode === 200) {
+            setFriends(data.data)
+            setFilteredFriends(data.data)
+          }
+
+        } catch (error) {
+          console.log("Erro ao Buscar Amigos", error)
+
+        } finally {
+          setIsLoading(false)
         }
-
-      } catch (error) {
-        console.log("Erro ao Buscar Amigos", error)
-
-      } finally {
-        setIsLoading(false)
       }
-    }
-    fetchFriends()
-  }, [])
+      fetchFriends()
+    }, [])
+  )
 
   // Atualiza a lista filtrada conforme o usuário digita
   const handleSearch = (text: string) => {
@@ -75,10 +78,14 @@ export default function AddParticipants() {
     );
   };
 
+  if (isLoading) {
+    return (
+      <ActivityIndicatorComponent />
+    )
+  }
+
   return (
     <View style={styles.container}>
-      {isLoading && <ActivityIndicator size="large" color="#007AFF" />}
-
       <View style={{ flex: 1, gap: 30 }}>
         <View>
           <Text style={styles.label}>Adicionar participantes</Text>
