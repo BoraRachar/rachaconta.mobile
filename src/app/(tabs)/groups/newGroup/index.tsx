@@ -22,6 +22,8 @@ import { styles as globalStyles } from "@/src/app/styles";
 import { theme } from "@/src/theme";
 import { styles } from "./styles";
 
+import { router } from 'expo-router'
+
 interface Categories {
   ativo: boolean;
   dataCadastro: string;
@@ -208,7 +210,7 @@ export default function NewGroup() {
 
         <ButtonCustomizer.Root
           type="primaryHalfWidth"
-          onPress={() => console.log("Criar")}
+          onPress={() => router.push('/groups/conditionPage')}
         >
           <ButtonCustomizer.Title
             title="Criar"
