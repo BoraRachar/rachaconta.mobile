@@ -200,7 +200,7 @@ export default function NewGroup() {
       <View style={{ marginTop: 50, paddingBottom: 50, flexDirection: "row", gap: 16 }}>
         <ButtonCustomizer.Root
           type="tertiaryHalfWidth"
-          onPress={() => console.log("cancelar")}
+          onPress={() => router.push('/groups')}
         >
           <ButtonCustomizer.Title
             title="Cancelar"
@@ -213,7 +213,7 @@ export default function NewGroup() {
           onPress={() => router.push('/groups/conditionPage')}
         >
           <ButtonCustomizer.Title
-            title="Criar"
+            title="Continuar"
             customStyles={globalStyles.primaryButtonText}
           />
         </ButtonCustomizer.Root>

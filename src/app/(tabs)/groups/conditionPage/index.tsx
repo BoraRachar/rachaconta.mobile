@@ -3,7 +3,8 @@ import { styles } from "./styles";
 import { useState } from 'react';
 import TeamSpirit from '../../../../assets/images/teamSpirit.svg'
 import { theme } from '@/src/theme'
-import { ButtonCustomizer } from "@/src/components/ButtonCustomizer"; import { styles as globalStyles } from "@/src/app/styles";
+import { ButtonCustomizer } from "@/src/components/ButtonCustomizer"; 
+import { styles as globalStyles } from "@/src/app/styles";
 import { router } from 'expo-router'
 
 export default function ConditionPage() {
@@ -127,6 +128,7 @@ export default function ConditionPage() {
         <ButtonCustomizer.Root
           type="primaryHalfWidth"
           onPress={() => console.log("continuar")}
+          // onPress={() => router.push('/groups/resume')}
         >
           <ButtonCustomizer.Title
             title="Continuar"
