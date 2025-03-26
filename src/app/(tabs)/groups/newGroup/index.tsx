@@ -210,7 +210,7 @@ export default function NewGroup() {
 
         <ButtonCustomizer.Root
           type="primaryHalfWidth"
-          onPress={() => router.push('/groups/conditionPage')}
+          onPress={() => router.push("/groups/resume")}
         >
           <ButtonCustomizer.Title
             title="Continuar"

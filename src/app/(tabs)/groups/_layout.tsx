@@ -41,6 +41,23 @@ export default function GroupsLayout() {
       />
 
       <Stack.Screen
+        name="resume/index"
+        options={{
+          title: 'Resumo',
+          headerShown: true,
+          headerTitleAlign: 'center',
+          headerLeft: () => (
+            <LeftIcon
+              onPress={() => {
+                router.back()
+              }}
+            />
+          ),
+          headerRight: () => <Question />,
+        }}
+      />
+
+      <Stack.Screen
         name="conditionPage/index"
         options={{
           title: 'Novo Grupo',
