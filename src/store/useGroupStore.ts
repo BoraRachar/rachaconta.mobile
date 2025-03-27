@@ -4,6 +4,7 @@ interface GroupData {
   nome?: string;
   descricao?: string;
   idCategoria?: string;
+  participantes?: string[];
 }
 
 interface GroupState {

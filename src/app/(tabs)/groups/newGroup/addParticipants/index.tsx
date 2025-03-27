@@ -33,10 +33,10 @@ export default function AddParticipants() {
   const [filteredFriends, setFilteredFriends] = useState<Friend[] | undefined>([])
 
   const isKeyboardVisible = useKeyboardStatus()
-
   const { userCod } = useAuthStore()
+  const { setGroupData } = useGroupStore()
 
-  console.log(useGroupStore.getState())
+  // console.log(useGroupStore.getState())
 
   // Busca amigos na API ao carregar a tela
   useFocusEffect(
@@ -71,15 +71,20 @@ export default function AddParticipants() {
   }
 
   // Alterna a seleção de um amigo
-  const toggleSelection = (amigoId: string) => {
+  const toggleSelection = (nome: string) => {
     setSelected((prev) => {
-      console.log(prev)
-      return (
-        prev.includes(amigoId) ? prev.filter((item) => item !== amigoId) : [...prev, amigoId]
-      )
-    }
-    );
+      if (prev.includes(nome)) {
+        return prev.filter((item) => item !== nome)
+      }
+
+      return [...prev, nome]
+    })
   };
+
+  const handleSubmit = () => {
+    selected && setGroupData({ participantes: selected })
+    router.push("/groups/newGroup/conditionPage")
+  }
 
   if (isLoading) {
     return (
@@ -109,16 +114,16 @@ export default function AddParticipants() {
                 keyExtractor={(item) => item.amigoId}
                 renderItem={({ item }) => {
 
-                  const isSelected = selected.includes(item.amigoId)
+                  const isSelected = selected.includes(item.nome)
 
                   return (
                     <TouchableOpacity
                       style={[styles.checkboxItem, isSelected && { backgroundColor: theme.colors.third }]}
-                      onPress={() => toggleSelection(item.amigoId)}
+                      onPress={() => toggleSelection(item.nome)}
                     >
                       <Checkbox
                         value={isSelected}
-                        onValueChange={() => toggleSelection(item.amigoId)}
+                        onValueChange={() => toggleSelection(item.nome)}
                         color={isSelected ? theme.colors.primaryColor : undefined}
                         style={styles.checkbox}
                       />
@@ -169,7 +174,7 @@ export default function AddParticipants() {
 
           <ButtonCustomizer.Root
             type="primaryHalfWidth"
-            onPress={() => router.push("/groups/newGroup/conditionPage")}
+            onPress={handleSubmit}
           >
             <ButtonCustomizer.Title
               title="Proximo"

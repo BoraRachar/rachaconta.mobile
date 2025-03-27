@@ -6,9 +6,12 @@ import { theme } from '@/src/theme'
 import { ButtonCustomizer } from "@/src/components/ButtonCustomizer";
 import { styles as globalStyles } from "@/src/app/styles";
 import { router } from 'expo-router'
+import { useGroupStore } from '@/src/store/useGroupStore';
 
 export default function ConditionPage() {
   const [selectedOption, setSelectedOption] = useState<'equal' | 'value' | 'percentage' | 'quota' | null>(null)
+
+  console.log(useGroupStore.getState())
 
   return (
     <ScrollView style={styles.container}>
