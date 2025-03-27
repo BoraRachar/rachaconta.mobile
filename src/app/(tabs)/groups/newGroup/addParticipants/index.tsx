@@ -166,7 +166,7 @@ export default function AddParticipants() {
 
           <ButtonCustomizer.Root
             type="primaryHalfWidth"
-            onPress={() => router.push("/groups/newGroup/addParticipants")}
+            onPress={() => router.push("/groups/newGroup/conditionPage")}
           >
             <ButtonCustomizer.Title
               title="Proximo"

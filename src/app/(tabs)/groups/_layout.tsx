@@ -58,7 +58,7 @@ export default function GroupsLayout() {
       />
 
       <Stack.Screen
-        name="conditionPage/index"
+        name="newGroup/conditionPage/index"
         options={{
           title: 'Novo Grupo',
           headerShown: true,

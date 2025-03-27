@@ -1,7 +1,7 @@
 import { Text, View, Pressable, TouchableOpacity, ScrollView } from 'react-native'
 import { styles } from "./styles";
 import { useState } from 'react';
-import TeamSpirit from '../../../../assets/images/teamSpirit.svg'
+import TeamSpirit from '@/src/assets/images/teamSpirit.svg'
 import { theme } from '@/src/theme'
 import { ButtonCustomizer } from "@/src/components/ButtonCustomizer";
 import { styles as globalStyles } from "@/src/app/styles";
