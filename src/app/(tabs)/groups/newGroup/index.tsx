@@ -21,7 +21,8 @@ import AddFriendIcon from '@/src/assets/images/addFriendIcon.svg'
 import { styles as globalStyles } from "@/src/app/styles";
 import { theme } from "@/src/theme";
 import { styles } from "./styles";
-import { router } from "expo-router";
+
+import { router } from 'expo-router'
 
 interface Categories {
   ativo: boolean;
@@ -199,7 +200,7 @@ export default function NewGroup() {
       <View style={{ marginTop: 50, paddingBottom: 50, flexDirection: "row", gap: 16 }}>
         <ButtonCustomizer.Root
           type="tertiaryHalfWidth"
-          onPress={() => console.log("cancelar")}
+          onPress={() => router.push('/groups')}
         >
           <ButtonCustomizer.Title
             title="Cancelar"
@@ -209,10 +210,10 @@ export default function NewGroup() {
 
         <ButtonCustomizer.Root
           type="primaryHalfWidth"
-          onPress={() => router.push("/groups/resume")}
+          onPress={() => router.push("/groups/conditionPage")}
         >
           <ButtonCustomizer.Title
-            title="Criar"
+            title="Continuar"
             customStyles={globalStyles.primaryButtonText}
           />
         </ButtonCustomizer.Root>
