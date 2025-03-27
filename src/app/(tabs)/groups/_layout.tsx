@@ -41,9 +41,9 @@ export default function GroupsLayout() {
       />
 
       <Stack.Screen
-        name="resume/index"
+        name="newGroup/addParticipants/index"
         options={{
-          title: 'Resumo',
+          title: 'Adicionar participantes',
           headerShown: true,
           headerTitleAlign: 'center',
           headerLeft: () => (
@@ -61,6 +61,23 @@ export default function GroupsLayout() {
         name="conditionPage/index"
         options={{
           title: 'Novo Grupo',
+          headerShown: true,
+          headerTitleAlign: 'center',
+          headerLeft: () => (
+            <LeftIcon
+              onPress={() => {
+                router.back()
+              }}
+            />
+          ),
+          headerRight: () => <Question />,
+        }}
+      />
+
+      <Stack.Screen
+        name="resume/index"
+        options={{
+          title: 'Resumo',
           headerShown: true,
           headerTitleAlign: 'center',
           headerLeft: () => (

@@ -54,4 +54,36 @@ export const styles = StyleSheet.create({
     lineHeight: verticalScale(16),
     marginTop: verticalScale(8),
   },
+  searchInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderWidth: 1,
+    borderColor: theme.colors.primaryColor,
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    width: '100%',
+    height: verticalScale(58),
+  },
+  participantsContainer: {
+    borderWidth: 1,
+    borderColor: theme.colors.primaryColor,
+    borderRadius: 8,
+    maxHeight: verticalScale(250)
+  },
+  checkboxItem: {
+    flexDirection: 'row',
+    gap: 10,
+    padding: 12,
+  },
+  checkbox: {
+    borderColor: theme.colors.primaryColor,
+    borderWidth: 2,
+    borderRadius: 4
+  },
+  checkboxText: {
+    fontFamily: theme.fontFamily.regular,
+    fontSize: 16,
+    color: theme.colors.primaryColor,
+  }
 })
