@@ -21,7 +21,6 @@ import AddFriendIcon from '@/src/assets/images/addFriendIcon.svg'
 import { styles as globalStyles } from "@/src/app/styles";
 import { theme } from "@/src/theme";
 import { styles } from "./styles";
-import { router } from "expo-router";
 
 import { router } from 'expo-router'
 
@@ -211,7 +210,7 @@ export default function NewGroup() {
 
         <ButtonCustomizer.Root
           type="primaryHalfWidth"
-          onPress={() => router.push("/groups/resume")}
+          onPress={() => router.push("/groups/conditionPage")}
         >
           <ButtonCustomizer.Title
             title="Continuar"
