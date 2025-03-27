@@ -18,6 +18,7 @@ import Search from '@/src/assets/images/search.svg'
 import { styles as globalStyles } from "@/src/app/styles"
 import { styles } from "../styles"
 import { theme } from '@/src/theme'
+import { useGroupStore } from '@/src/store/useGroupStore'
 
 interface Friend {
   amigoId: string
@@ -34,6 +35,8 @@ export default function AddParticipants() {
   const isKeyboardVisible = useKeyboardStatus()
 
   const { userCod } = useAuthStore()
+
+  console.log(useGroupStore.getState())
 
   // Busca amigos na API ao carregar a tela
   useFocusEffect(

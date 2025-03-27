@@ -20,6 +20,12 @@ import { theme } from "@/src/theme";
 import { styles as globalStyles } from "@/src/app/styles";
 import { styles } from "./styles";
 import { verticalScale } from "@/src/utils/responsiveUtils";
+import { useGroupStore } from "@/src/store/useGroupStore";
+
+interface Data {
+  name: string;
+  description: string;
+}
 
 interface Categories {
   ativo: boolean;
@@ -40,6 +46,7 @@ export default function NewGroup() {
     useState<string>("Escolha uma opção");
   const {
     control,
+    handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
@@ -69,8 +76,19 @@ export default function NewGroup() {
     fetchCategories();
   }, []);
 
-
   const isKeyboardVisible = useKeyboardStatus()
+  const { setGroupData, removeGroupData } = useGroupStore()
+
+  const handleData = (data) => {
+    const dataStored = {
+      nome: data.name,
+      descricao: data.description,
+      idCategoria: selectedCategory,
+    }
+
+    setGroupData(dataStored)
+    router.push("/groups/newGroup/addParticipants")
+  }
 
   return (
     <View style={styles.container}>
@@ -185,7 +203,10 @@ export default function NewGroup() {
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <ButtonCustomizer.Root
             type="tertiaryHalfWidth"
-            onPress={() => console.log("cancelar")}
+            onPress={() => {
+              removeGroupData()
+              router.replace("/groups")
+            }}
           >
             <ButtonCustomizer.Title
               title="Cancelar"
@@ -195,7 +216,7 @@ export default function NewGroup() {
 
           <ButtonCustomizer.Root
             type="primaryHalfWidth"
-            onPress={() => router.push("/groups/newGroup/addParticipants")}
+            onPress={handleSubmit(handleData)}
           >
             <ButtonCustomizer.Title
               title="Proximo"
