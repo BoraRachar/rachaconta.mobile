@@ -131,7 +131,7 @@ export default function ConditionPage() {
           </ButtonCustomizer.Root>
           <ButtonCustomizer.Root
             type="primaryHalfWidth"
-            onPress={() => router.push('/groups/resume')}
+            onPress={() => router.push('/groups/newGroup/resume')}
           >
             <ButtonCustomizer.Title
               title="Continuar"

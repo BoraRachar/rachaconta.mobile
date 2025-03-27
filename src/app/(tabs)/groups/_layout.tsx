@@ -75,7 +75,7 @@ export default function GroupsLayout() {
       />
 
       <Stack.Screen
-        name="resume/index"
+        name="newGroup/resume/index"
         options={{
           title: 'Resumo',
           headerShown: true,
