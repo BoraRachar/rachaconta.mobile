@@ -7,10 +7,13 @@ import styles from './styles';
 import UserImage from '@/src/assets/images/user-circle.svg'
 import PencilBlack from '@/src/assets/images/pencil-black.svg'
 import { ButtonCustomizer } from '@/src/components/ButtonCustomizer';
+import { useGroupStore } from '@/src/store/useGroupStore';
 
 const DATA = ['Junior Alves', 'João da Silva', 'Maria da Silva', 'José da Silva', 'Junior Alves', 'João da Silva', 'Maria da Silva', 'José da Silva', 'Junior Alves', 'João da Silva', 'Maria da Silva', 'José da Silva', 'Junior Alves', 'João da Silva', 'Maria da Silva', 'José da Silva']
 
 const Resume: React.FC = () => {
+  console.log(useGroupStore.getState())
+
   return (
     <ScrollView style={styles.container} scrollEnabled={true}>
       {/* Header */}

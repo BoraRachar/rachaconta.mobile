@@ -1,4 +1,4 @@
-import { Text, View, Pressable, TouchableOpacity, ScrollView } from 'react-native'
+import { Text, View, Pressable, TouchableOpacity, ScrollView, Alert } from 'react-native'
 import { styles } from "./styles";
 import { useState } from 'react';
 import TeamSpirit from '@/src/assets/images/teamSpirit.svg'
@@ -10,8 +10,26 @@ import { useGroupStore } from '@/src/store/useGroupStore';
 
 export default function ConditionPage() {
   const [selectedOption, setSelectedOption] = useState<'equal' | 'value' | 'percentage' | 'quota' | null>(null)
+  const { setGroupData } = useGroupStore()
 
-  console.log(useGroupStore.getState())
+  const handleSubmit = () => {
+    if (selectedOption === null) {
+      Alert.alert('Atenção', 'Selecione uma opção de divisão.')
+      return
+    }
+
+    const validOptions = {
+      equal: 0,
+      value: 1,
+      percentage: 2,
+      quota: 3
+    }
+
+    setGroupData({ tipoDivisao: validOptions[selectedOption] })
+    router.push('/groups/newGroup/resume')
+  }
+
+
 
   return (
     <ScrollView style={styles.container}>
@@ -134,7 +152,7 @@ export default function ConditionPage() {
           </ButtonCustomizer.Root>
           <ButtonCustomizer.Root
             type="primaryHalfWidth"
-            onPress={() => router.push('/groups/newGroup/resume')}
+            onPress={handleSubmit}
           >
             <ButtonCustomizer.Title
               title="Continuar"
